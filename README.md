@@ -22,3 +22,6 @@
 
     from push import push
     push(dirname)
+
+# 注意
+sae云存储中的文件结构将和dirname中的文件结构相同，也就是说，如果dirname中的删除了或者没有某个文件，在sae中有这个文件，push过程会删除掉这个“多余”的文件。
