@@ -9,3 +9,11 @@
 *    /test.txt
 
 注意空文件夹不推送
+
+# 用法
+有三个环境变量需要设置：
+* SAE_STORAGE_ACCESS_KEY 
+* SAE_STORAGE_SECRET_KEY
+* SAE_BUCKET_NAME
+
+顾名思义，他们分别是sae云存储的accessKey, secretKey, bucket名字
