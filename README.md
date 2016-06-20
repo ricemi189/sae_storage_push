@@ -17,3 +17,8 @@
 * SAE_BUCKET_NAME
 
 顾名思义，他们分别是sae云存储的accessKey, secretKey, bucket名字
+在程序中，用起来也很简单：
+`
+from push import push
+push(dirname)
+`
