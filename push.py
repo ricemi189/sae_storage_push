@@ -1,6 +1,6 @@
 #encoding:utf8
 #python
-__author__=='xxxspy'
+__author__='xxxspy'
 from sinastorage.bucket import SCSBucket
 import sinastorage
 import hashlib
