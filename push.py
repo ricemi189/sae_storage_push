@@ -7,7 +7,7 @@ import hashlib
 import os
 PATH_SPLITER='/'
 def pathjoin(*args):
-    return PATH_SPLITER.join(args).decode('gbk')
+    return PATH_SPLITER.join(args)
 def splitpath(p):
     rp=[]
     ps=os.path.split(p)
@@ -42,16 +42,22 @@ def push(dirname):
     bucket=SCSBucket(bucketname,secure=False)
     fpaths=[]
     for root,dirs,files in os.walk(dirname):
+        ps=splitpath(root)
+        visible=True
+        for p in ps:
+            if p.startswith('.'):
+                visible=False
+        if not visible:
+            continue
+        del ps[0]
         for f in files:
             local_fpath=os.path.join(root,f)
-            ps=splitpath(root)
-            ps[0]=''
             ps.append(f)
             fpath=pathjoin(*ps)
-            print (fpath)
+            print ('check :'+fpath)
             fpaths.append(fpath)
-            if not fpath.startswith(PATH_SPLITER):
-                fpath =PATH_SPLITER+fpath
+            # if not fpath.startswith(PATH_SPLITER):
+            #     fpath =PATH_SPLITER+fpath
             if file_exist(bucket,fpath):
                 meta=bucket.meta(fpath)
                 sae_sha1=['Content-SHA1']
