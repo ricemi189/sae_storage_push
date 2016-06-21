@@ -7,7 +7,7 @@ import hashlib
 import os
 PATH_SPLITER='/'
 def pathjoin(*args):
-    return PATH_SPLITER.join(args)
+    return PATH_SPLITER.join(args).decode('gbk')
 def splitpath(p):
     rp=[]
     ps=os.path.split(p)
@@ -48,6 +48,7 @@ def push(dirname):
             ps[0]=''
             ps.append(f)
             fpath=pathjoin(*ps)
+            print (fpath)
             fpaths.append(fpath)
             if not fpath.startswith(PATH_SPLITER):
                 fpath =PATH_SPLITER+fpath
@@ -61,7 +62,7 @@ def push(dirname):
                     sha1=hashlib.sha1()
                     sha1.update(fdata)
                     if sae_sha1 != sha1.hexdigest():
-                        bucket.put(fpath,fdata)
+                        bucket.putFile(fpath,local_fpath)
             else:
                 bucket.putFile(fpath,local_fpath)
     sae_files=bucket.listdir(prefix='')
