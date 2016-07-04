@@ -74,7 +74,8 @@ def push(dirname):
     sae_files=bucket.listdir(prefix='')
     for f in sae_files:
         #f=(name, isPrefix, sha1, expiration_time, modify, owner, md5, content_type, size)
-        if f[0] not in fpaths:
+        print('expecting local: ',os.path.join(dirname,f[0]))
+        if f[0] not in fpaths and os.path.isfile():
             print('del '+f[0])
             del bucket[f[0]]
         else:
